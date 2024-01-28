@@ -1,5 +1,3 @@
-// button_template.dart
-
 import 'package:flutter/material.dart';
 
 class ButtonTemplate extends StatelessWidget {
