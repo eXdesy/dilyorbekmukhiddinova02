@@ -1,11 +1,44 @@
+// main.dart
+
 import 'package:flutter/material.dart';
+import 'widgets/button_template.dart';
 
 void main() {
   runApp(MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({Key? key}) : super(key: key);
+
+  @override
+  _MainAppState createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  int counter = 0;
+
+  void incrementCounter() {
+    setState(() {
+      counter++;
+    });
+    print('Incrementando contador: $counter');
+  }
+
+  void resetCounter() {
+    setState(() {
+      counter = 0;
+    });
+    print('Reseteando contador: $counter');
+  }
+
+  void decrementCounter() {
+    setState(() {
+      if (counter > 0) {
+        counter--;
+      }
+    });
+    print('Decrementando contador: $counter');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +62,9 @@ class MainApp extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 150),
-                  const Text(
-                    '0',
-                    style: TextStyle(
+                  Text(
+                    '$counter',
+                    style: const TextStyle(
                       fontFamily: 'Poppins',
                       color: Colors.white,
                       fontSize: 200,
@@ -41,28 +74,19 @@ class MainApp extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "+",
-                          style: TextStyle(fontSize: 25),
-                        ),
+                      ButtonTemplate(
+                        buttonText: '+',
+                        onPressed: incrementCounter,
                       ),
                       const SizedBox(width: 15),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "RESET",
-                          style: TextStyle(fontSize: 25),
-                        ),
+                      ButtonTemplate(
+                        buttonText: 'RESET',
+                        onPressed: resetCounter,
                       ),
                       const SizedBox(width: 15),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "-",
-                          style: TextStyle(fontSize: 25),
-                        ),
+                      ButtonTemplate(
+                        buttonText: '-',
+                        onPressed: decrementCounter,
                       ),
                     ],
                   ),
